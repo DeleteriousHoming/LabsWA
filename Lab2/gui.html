@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark bg-primary justify-content-between">
+            <a class="navbar-brand">
+                <span data-feather="check"></span>
+                ToDoManager</a>
+            <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">
+                    <span data-feather="user"></span></a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!--col-md sets the max container width-->
+                <!--col-md-2 d-none d-md-block bg-light sidebar-->
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+
+                            <!--Start point of the items-->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">All</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Important</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Today</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Next 7 Days</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Private</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="flex-column flex-grow-1">
+
+                    <h1>All</h1>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="Checkbox" id="defaultCheck1" value="" checked>
+                                <label class="form-check-label" for="defaultCheck1">
+                                Complete Lab1
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
+                                <label class="form-check-label" for="defaultCheck2">
+                                Buy some groceries
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="Checkbox" id="defaultCheck3" value="">
+                                <label class="form-check-label" for="defaultCheck3">
+                                Read a good book!
+                                </label>
+                            </div>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+                
+
+            </div>
+        </div>
+
+
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+        feather.replace()
+        </script>
+    
+  </body>
+</html>
