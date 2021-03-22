@@ -36,7 +36,7 @@
                 <!--col-md sets the max container width-->
                 <!--col-md-2 d-none d-md-block bg-light sidebar-->
                  <!-- A vertical navbar -->
-                <nav class="h-100 navbar bg-light col-md-2 align-items-start"  style="height: 100%;">
+                <nav class="h-100 navbar d-none d-md-block bg-light col-md-2 align-items-start"  style="height: 100%;">
                     <!-- Links -->
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -60,48 +60,82 @@
                 
                 </nav> 
 
-                <div class="flex-column flex-grow-1">
+                <div class="flex-grow-1">
 
                     <div class="ml-4 pb-2 mt-4 mb-2 border-bottom page-header">
                         <h1>All</h1>
                     </div>
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="form-check">
-                                <input class="form-check-input" type="Checkbox" id="defaultCheck1" value="" checked>
-                                <label class="form-check-label" for="defaultCheck1">
-                                Complete Lab1
-                                </label>
-                            </div>
+                    <ul class="ml-4 mr-4 list-group list-group-flush">
+                        <li class="list-group-item justify-content-between">
+                            <div class="row">
+                                <div class="col-sm form-check">
+                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                    Complete Lab 2
+                                    </label>
+                                </div>
+
+                                <div class="col-sm">
+                                    <!--PlaceHolder for second column-->
+                                </div>
+                                <div class="date">
+                                  Monday 22 March 2021 at 14:30
+                                </div>
+                              </div>
+
                         </li>
 
                         <li class="list-group-item">
-                            <div class="form-check">
-                                <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
-                                <label class="form-check-label" for="defaultCheck2">
-                                Buy some groceries
-                                </label>
-                            </div>
+                            <div class="row">
+                                <div class="col-sm form-check">
+                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                    Buy some groceries
+                                    </label>
+                                </div>
+
+                                <div class="col-sm">
+                                    <span data-feather="user" class="user"></span></a>
+                                </div>
+                                <div class="date">
+                                  Today at 14:00
+                                </div>
+                              </div>
                         </li>
 
                         <li class="list-group-item">
-                            <div class="form-check">
-                                <input class="form-check-input" type="Checkbox" id="defaultCheck3" value="">
-                                <label class="form-check-label" for="defaultCheck3">
-                                Read a good book!
-                                </label>
-                            </div>
+                            <div class="row">
+                                <div class="col-sm form-check">
+                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
+                                    <label class="statement" for="defaultCheck2">
+                                    Read a Good Book!
+                                    </label>
+                                </div>
+
+                                <div class="col-sm">
+                                    <!--Placeholder for second column-->
+                                </div>
+                                <div class="date">
+                                  <!--Placeholder for third column-->
+                                </div>
+                              </div>
                         </li>
 
 
                     </ul>
+
+                    <div class="plus-button">
+                        <button type="button" class="btn btn-primary btn-circle btn-xl"><i data-feather="plus"></i>
+                        </button>
+                    </div>
 
                 </div>
                 
 
             </div>
         </div>
+
 
 
 
