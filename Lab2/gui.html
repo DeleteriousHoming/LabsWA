@@ -13,20 +13,28 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-dark bg-primary justify-content-between">
-            <a class="navbar-brand">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-primary justify-content-between">
+            <a class="navbar-brand mr-expand">
                 <span data-feather="check"></span>
                 ToDoManager</a>
-            <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">
-                    <span data-feather="user"></span></a>
-                </li>
-            </ul>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarToggler1">
+                <form class="form-inline ml-auto my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">
+                        <span data-feather="user"></span></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
 
@@ -108,7 +116,7 @@
                             <div class="row">
                                 <div class="col-sm form-check">
                                     <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
-                                    <label class="statement" for="defaultCheck2">
+                                    <label class="text-danger" for="defaultCheck2">
                                     Read a Good Book!
                                     </label>
                                 </div>
