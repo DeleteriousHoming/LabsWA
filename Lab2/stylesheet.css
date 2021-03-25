@@ -8,9 +8,6 @@ html, body {
     text-align: right;
     font-size: smaller;
 }
-.user {
-    color:#0d6efd;
-}
 .circle{
     color:#0d6efd;
     background-color:transparent;
@@ -34,10 +31,10 @@ html, body {
     font-size: 12px;
     line-height: 1.42857;
 }
+/*
 .plus-button{
-    
     position: absolute;
     bottom: 0px;
     right: 0px;
     
-}
+}*/
