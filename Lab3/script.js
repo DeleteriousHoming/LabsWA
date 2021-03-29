@@ -1,10 +1,11 @@
 "use strict";
 
 
-//const dayjs = require('dayjs');
-//const { mainModule } = require('process');
-//const sqlite3 = require('sqlite3');
+
 const noDeadline = `9999`;
+
+dayjs.extend(window.dayjs_plugin_isToday)
+
 
 function Task(id,description,urgent=false,isPrivate=false,deadline=noDeadline){
     this.id=id;
@@ -53,7 +54,12 @@ function TaskList(array=[]){
         console.log('****** Tasks filtered, only (urgent == true): ******');
         console.log(filtered.map((a)=>(a.toString())).join('\n'));
 
-        return new TaskList(filtered);
+        return filtered;
+    }
+
+    this.isTodayFilter = () =>{
+        const filtered = this.list.filter((a)=>(a.deadline.isToday()));
+        return filtered;
     }
 }
 
@@ -130,7 +136,7 @@ function createNewHtmlTask(nTask){
 
 function loadList(someList){
     
-    for(let task of someList.list){
+    for(let task of someList){
         createNewHtmlTask(task);
     }
 }
@@ -144,7 +150,7 @@ function filterAll(fullList) {
     a.onclick = function() {
 
         deleteAll();
-        loadList(fullList);
+        loadList(fullList.list);
 
 
       return false;
@@ -166,6 +172,21 @@ function filterImportant(fullList){
     }
 }
 
+function filterToday(fullList){
+    let a = document.getElementById("filter-today")
+    let today = fullList.isTodayFilter()
+
+
+    a.onclick = function() {
+
+        deleteAll();
+        loadList(today);
+
+
+      return false;
+    }
+}
+
 
 
 function deleteAll(){
@@ -180,13 +201,15 @@ function main(){
     const laundry = new Task(1,"Laundry",false,true,noDeadline);
     const monday_lab = new Task(2,"Monday lab",false,false,"2021-02-16");
     const phone_call = new Task(3,"Phone call",true,false,"2021-03-08");
+    const invest = new Task(4,"Investing",true,true,dayjs());
 
-    const fullList = new TaskList([laundry,monday_lab,phone_call]);
+    const fullList = new TaskList([laundry,monday_lab,phone_call,invest]);
 
-    loadList(fullList);
+    loadList(fullList.list);
 
     window.onload = filterAll(fullList);
     window.onload = filterImportant(fullList);
+    window.onload = filterToday(fullList);
 }
 
 main();
