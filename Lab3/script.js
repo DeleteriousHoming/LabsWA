@@ -92,7 +92,7 @@ function createNewHtmlTask(nTask){
 
     const middlea = document.createElement("a");
 
-    const middleSpan = document.createElement("span");
+    const middleSpan = document.createElement("a");
     middleSpan.className = "text-primary";
     middleSpan.setAttribute("data-feather","user");
 
@@ -102,7 +102,7 @@ function createNewHtmlTask(nTask){
     
     //Create Last column
     const lastDiv = document.createElement("div");
-    lastDiv.className="date";
+    lastDiv.className="date w-25";
     lastDiv.innerHTML=nTask.deadline.format('dddd d MMM YY HH:mm');
 
     
@@ -116,6 +116,7 @@ function createNewHtmlTask(nTask){
     htmlTask.appendChild(containerDiv)
     bod.appendChild(htmlTask);
 
+    feather.replace()
     return htmlTask
 }
 
