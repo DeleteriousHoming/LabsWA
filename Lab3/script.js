@@ -54,13 +54,36 @@ function TaskList(array=[]){
 }
 
 function createNewHtmlTask(nTask){
-    let htmlTask = document.createElement("li");
-    htmlTask.className="list-group-item"
+    const bod = document.getElementById("list-of-tasks");
 
-    let div = document.createElement("div")
-    div.className = "row"
+    const htmlTask = document.createElement("li");
+    htmlTask.className="list-group-item";
 
-    htmlTask.appendChild(document.createElement("div"))
+    const div = document.createElement("div");
+    div.className = "row";
+
+    const div2 = document.createElement("div");
+    div2.className = "col-sm form-check";
+
+    const inp = document.createElement("input");
+    inp.className="form-check-input";
+    inp.setAttribute("type","Checkbox");
+    inp.setAttribute("id","defaultCheck2");
+    inp.setAttribute("value","");
+
+    const label = document.createElement("label");
+    label.className="form-check-label";
+    label.setAttribute("for","form-check-label");
+    label.innerHTML="This is a TEEEEEEEEEEEEEST";
+
+    div2.appendChild(inp);
+    div2.appendChild(label);
+
+    div.appendChild(div2);
+
+    htmlTask.appendChild(div)
+
+    bod.appendChild(htmlTask);
 
     return htmlTask
 }
@@ -75,8 +98,10 @@ function main(){
     console.log(phone_call.toString());
 
     //console.log(window)
-    let bod = document.getElementById("list-of-tasks");
-    console.log(bod);
+    //let bod = document.getElementById("list-of-tasks");
+    //console.log(bod);
+
+    createNewHtmlTask("Test");
 }
 
 main();
