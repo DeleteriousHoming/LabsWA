@@ -1,7 +1,5 @@
 "use strict";
 
-"use strict";
-
 //const dayjs = require('dayjs');
 //const { mainModule } = require('process');
 //const sqlite3 = require('sqlite3');
@@ -55,6 +53,18 @@ function TaskList(array=[]){
     }
 }
 
+function createNewHtmlTask(nTask){
+    let htmlTask = document.createElement("li");
+    htmlTask.className="list-group-item"
+
+    let div = document.createElement("div")
+    div.className = "row"
+
+    htmlTask.appendChild(document.createElement("div"))
+
+    return htmlTask
+}
+
 function main(){
     const laundry = new Task(1,"laundry",false,true,noDeadline);
     const monday_lab = new Task(2,"monday lab",false,false,"2021-02-16")
@@ -63,6 +73,10 @@ function main(){
     console.log(laundry.toString());
     console.log(monday_lab.toString());
     console.log(phone_call.toString());
+
+    //console.log(window)
+    let bod = document.getElementById("list-of-tasks");
+    console.log(bod);
 }
 
 main();
