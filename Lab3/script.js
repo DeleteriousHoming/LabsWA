@@ -1,5 +1,6 @@
 "use strict";
 
+
 //const dayjs = require('dayjs');
 //const { mainModule } = require('process');
 //const sqlite3 = require('sqlite3');
@@ -11,6 +12,7 @@ function Task(id,description,urgent=false,isPrivate=false,deadline=noDeadline){
     this.urgent=urgent;
     this.isPrivate=isPrivate;
     this.deadline=dayjs(deadline); // optional argument
+    this.hasDeadline = deadline === noDeadline ? false : true;
 
     this.toString = ()=>{
         let date = this.deadline.format('MMMM DD, YYYY');
@@ -50,6 +52,8 @@ function TaskList(array=[]){
 
         console.log('****** Tasks filtered, only (urgent == true): ******');
         console.log(filtered.map((a)=>(a.toString())).join('\n'));
+
+        return new TaskList(filtered);
     }
 }
 
@@ -103,7 +107,10 @@ function createNewHtmlTask(nTask){
     //Create Last column
     const lastDiv = document.createElement("div");
     lastDiv.className="date w-25";
-    lastDiv.innerHTML=nTask.deadline.format('dddd d MMM YY HH:mm');
+    if (!nTask.hasDeadline)
+        lastDiv.innerHTML = "No deadline!";
+    else
+        lastDiv.innerHTML=nTask.deadline.format('dddd d MMM YY HH:mm');
 
     
     //Container div
@@ -120,22 +127,66 @@ function createNewHtmlTask(nTask){
     return htmlTask
 }
 
+
+function loadList(someList){
+    
+    for(let task of someList.list){
+        createNewHtmlTask(task);
+    }
+}
+
+function filterAll(fullList) {
+
+    //Get a reference to the link on the page
+    // with an id of "mylink"
+    let a = document.getElementById("filter-all");
+
+    a.onclick = function() {
+
+        deleteAll();
+        loadList(fullList);
+
+
+      return false;
+    }
+  }
+
+function filterImportant(fullList){
+    let a = document.getElementById("filter-important");
+    let importantList = fullList.filterAndPrint();
+
+
+    a.onclick = function() {
+
+        deleteAll();
+        loadList(importantList);
+
+
+      return false;
+    }
+}
+
+
+
+function deleteAll(){
+    const htmlTasks = document.getElementById("list-of-tasks");
+
+    while(htmlTasks.lastChild){
+        htmlTasks.removeChild(htmlTasks.lastChild);
+    }
+}
+
 function main(){
     const laundry = new Task(1,"Laundry",false,true,noDeadline);
-    const monday_lab = new Task(2,"Monday lab",false,false,"2021-02-16")
-    const phone_call = new Task(3,"Phone call",true,false,"2021-03-08")
+    const monday_lab = new Task(2,"Monday lab",false,false,"2021-02-16");
+    const phone_call = new Task(3,"Phone call",true,false,"2021-03-08");
 
-    console.log(laundry.toString());
-    console.log(monday_lab.toString());
-    console.log(phone_call.toString());
+    const fullList = new TaskList([laundry,monday_lab,phone_call]);
 
-    //console.log(window)
-    //let bod = document.getElementById("list-of-tasks");
-    //console.log(bod);
+    loadList(fullList);
 
-    createNewHtmlTask(laundry);
-    createNewHtmlTask(monday_lab);
-    createNewHtmlTask(phone_call);
+    window.onload = filterAll(fullList);
+    window.onload = filterImportant(fullList);
 }
 
 main();

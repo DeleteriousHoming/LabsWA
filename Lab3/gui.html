@@ -52,24 +52,25 @@
                 <!--col-md-2 d-none d-md-block bg-light sidebar-->
                  <!-- A vertical navbar -->
                 <nav class="h-100 navbar d-none d-md-block bg-light col-md-2 align-items-start"  style="height: 100%;">
+
                     <!-- Links -->
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">All</a>
+                            <a id="filter-all" class="nav-link" href="#">All</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Important</a>
+                            <a id="filter-important" class="nav-link" href="#">Important</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Today</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Next 7 days</a>
+                            <a id="filter-today" class="nav-link" href="#">Today</a>
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Private</a>
+                            <a id="filter-next-seven" class="nav-link" href="#">Next 7 days</a>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a id="filter-private" class="nav-link" href="#">Private</a>
                         </li>
                     </ul>
                 
@@ -82,62 +83,8 @@
                     </div>
 
                     <ul class="ml-4 mr-4 list-group list-group-flush" id="list-of-tasks">
-                        <li class="list-group-item justify-content-between">
-                            <div class="row">
-                                <div class="col-sm form-check">
-                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                    Complete Lab 2
-                                    </label>
-                                </div>
-
-                                <div class="col-sm">
-                                    <!--PlaceHolder for second column-->
-                                </div>
-                                <div class="date">
-                                  Monday 22 March 2021 at 14:30
-                                </div>
-                              </div>
-
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm form-check">
-                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                    Buy some groceries
-                                    </label>
-                                </div>
-
-                                <div class="col-sm">
-                                    <a>
-                                        <span data-feather="user" class="text-primary"></span></a>
-                                </div>
-                                <div class="date">
-                                  Today at 14:00
-                                </div>
-                              </div>
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm form-check">
-                                    <input class="form-check-input" type="Checkbox" id="defaultCheck2" value="">
-                                    <label class="text-danger" for="defaultCheck2">
-                                    Read a Good Book!
-                                    </label>
-                                </div>
-
-                                <div class="col-sm">
-                                    <!--Placeholder for second column-->
-                                </div>
-                                <div class="date">
-                                  <!--Placeholder for third column-->
-                                </div>
-                              </div>
-                        </li>
-
+                        
+                        <!--CLASS WHERE TASKS ARE PUT WITH JAVASCRIPT DO NOT ELIMINATE-->
 
                     </ul>
 
