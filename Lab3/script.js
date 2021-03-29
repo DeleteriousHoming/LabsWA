@@ -62,54 +62,58 @@ function createNewHtmlTask(nTask){
     //Create first column
 
     const div = document.createElement("div");
-    div.className = "row";
-
-    const div2 = document.createElement("div");
-    div2.className = "col-sm form-check";
+    div.className = "col-sm form-check";
 
     const inp = document.createElement("input");
+
+
     inp.className="form-check-input";
     inp.setAttribute("type","Checkbox");
     inp.setAttribute("id","defaultCheck2");
     inp.setAttribute("value","");
 
     const label = document.createElement("label");
-    label.className="form-check-label";
+
+    let labelImportance = "form-check-label"
+
+    if (nTask.urgent)
+        labelImportance += ' text-danger'; 
+
+    label.className=labelImportance;
     label.setAttribute("for","form-check-label");
     label.innerHTML=nTask.description;
 
-    div2.appendChild(inp);
-    div2.appendChild(label);
-
-    div.appendChild(div2);
-
-
+    div.appendChild(inp);
+    div.appendChild(label);
 
     //Create the middle column
     const middleDiv = document.createElement("div");
     middleDiv.className = "col-sm";
 
+    const middlea = document.createElement("a");
+
     const middleSpan = document.createElement("span");
     middleSpan.className = "text-primary";
-    middleSpan.setAttribute("data-feather","circle");
+    middleSpan.setAttribute("data-feather","user");
 
-    middleDiv.appendChild(middleSpan);
+    middlea.appendChild(middleSpan)
+    middleDiv.appendChild(middlea);
     
     
     //Create Last column
     const lastDiv = document.createElement("div");
+    lastDiv.className="date";
+    lastDiv.innerHTML=nTask.deadline.format('dddd d MMM YY HH:mm');
 
-    const lastDiv2 = document.createElement("div");
-    lastDiv2.className="date";
-    lastDiv2.innerHTML=nTask.deadline;
-
-    lastDiv.appendChild(lastDiv2);
     
+    //Container div
+    const containerDiv = document.createElement("div");
+    containerDiv.className = "row"
 
-
-    htmlTask.appendChild(div);
-    htmlTask.appendChild(middleDiv)
-    htmlTask.appendChild(lastDiv)
+    containerDiv.appendChild(div);
+    containerDiv.appendChild(middleDiv)
+    containerDiv.appendChild(lastDiv)
+    htmlTask.appendChild(containerDiv)
     bod.appendChild(htmlTask);
 
     return htmlTask
