@@ -59,6 +59,8 @@ function createNewHtmlTask(nTask){
     const htmlTask = document.createElement("li");
     htmlTask.className="list-group-item";
 
+    //Create first column
+
     const div = document.createElement("div");
     div.className = "row";
 
@@ -74,24 +76,49 @@ function createNewHtmlTask(nTask){
     const label = document.createElement("label");
     label.className="form-check-label";
     label.setAttribute("for","form-check-label");
-    label.innerHTML="This is a TEEEEEEEEEEEEEST";
+    label.innerHTML=nTask.description;
 
     div2.appendChild(inp);
     div2.appendChild(label);
 
     div.appendChild(div2);
 
-    htmlTask.appendChild(div)
 
+
+    //Create the middle column
+    const middleDiv = document.createElement("div");
+    middleDiv.className = "col-sm";
+
+    const middleSpan = document.createElement("span");
+    middleSpan.className = "text-primary";
+    middleSpan.setAttribute("data-feather","circle");
+
+    middleDiv.appendChild(middleSpan);
+    
+    
+    //Create Last column
+    const lastDiv = document.createElement("div");
+
+    const lastDiv2 = document.createElement("div");
+    lastDiv2.className="date";
+    lastDiv2.innerHTML=nTask.deadline;
+
+    lastDiv.appendChild(lastDiv2);
+    
+
+
+    htmlTask.appendChild(div);
+    htmlTask.appendChild(middleDiv)
+    htmlTask.appendChild(lastDiv)
     bod.appendChild(htmlTask);
 
     return htmlTask
 }
 
 function main(){
-    const laundry = new Task(1,"laundry",false,true,noDeadline);
-    const monday_lab = new Task(2,"monday lab",false,false,"2021-02-16")
-    const phone_call = new Task(3,"phone_call",true,false,"2021-03-08")
+    const laundry = new Task(1,"Laundry",false,true,noDeadline);
+    const monday_lab = new Task(2,"Monday lab",false,false,"2021-02-16")
+    const phone_call = new Task(3,"Phone call",true,false,"2021-03-08")
 
     console.log(laundry.toString());
     console.log(monday_lab.toString());
@@ -101,7 +128,9 @@ function main(){
     //let bod = document.getElementById("list-of-tasks");
     //console.log(bod);
 
-    createNewHtmlTask("Test");
+    createNewHtmlTask(laundry);
+    createNewHtmlTask(monday_lab);
+    createNewHtmlTask(phone_call);
 }
 
 main();
