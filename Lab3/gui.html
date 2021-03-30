@@ -48,58 +48,38 @@
         </nav>
 
 
-        <div class="h-100 container-fluid flex-column">
-            <div class="h-100 row">
-                
-                <!--col-md sets the max container width-->
-                <!--col-md-2 d-none d-md-block bg-light sidebar-->
-                 <!-- A vertical navbar -->
-                <nav class="h-100 navbar d-none d-md-block bg-light col-md-2 align-items-start"  style="height: 100%;">
+        <div class="h-100 row container-fluid">
+            
+            <!--col-md sets the max container width-->
+            <!--col-md-2 d-none d-md-block bg-light sidebar-->
+            <div class="d-none d-md-block bg-light col-md-2 align-items-start">
+                <div class="list-group mt-4" id="filter-links-side">
+                    <!--Here we generate the list of filters with javascript-->
+                  </div>
+            </div>
 
-                    <!-- Links -->
-                    <ul class="nav flex-column list-group bg-dark">
-                        <li class="nav-item list-group-item">
-                            <a id="filter-all" class="nav-link" href="#">All</a>
-                        </li>
-                        <li class="nav-item list-group-item">
-                            <a id="filter-important" class="nav-link" href="#">Important</a>
-                        </li>
-                        <li class="nav-item list-group-item">
-                            <a id="filter-today" class="nav-link" href="#">Today</a>
-                        </li>
-                        </li>
-                        <li class="nav-item list-group-item">
-                            <a id="filter-next-seven" class="nav-link" href="#">Next 7 days</a>
-                        </li>
-                        </li>
-                        <li class="nav-item list-group-item">
-                            <a id="filter-private" class="nav-link" href="#">Private</a>
-                        </li>
-                    </ul>
-                
-                </nav> 
 
-                <div class="flex-grow-1">
 
-                    <div class="ml-4 pb-2 mt-4 mb-2 border-bottom page-header">
-                        <h1>All</h1>
-                    </div>
+            <div class="flex-grow-1">
 
-                    <ul class="ml-4 mr-4 list-group list-group-flush" id="list-of-tasks">
-                        
-                        <!--CLASS WHERE TASKS ARE PUT WITH JAVASCRIPT DO NOT ELIMINATE-->
-
-                    </ul>
-
-                    <div class="d-flex justify-content-end fixed-bottom mr-2 mb-2">
-                        <button type="button" class="btn btn-primary btn-circle btn-xl"><i data-feather="plus"></i>
-                        </button>
-                    </div>
-
+                <div class="ml-4 pb-2 mt-4 mb-2 border-bottom page-header">
+                    <h1 id="main-page-title">All</h1>
                 </div>
-                
+
+                <ul class="ml-4 mr-4 list-group list-group-flush" id="list-of-tasks">
+                    
+                    <!--CLASS WHERE TASKS ARE PUT WITH JAVASCRIPT DO NOT ELIMINATE-->
+
+                </ul>
+
+                <div class="d-flex justify-content-end fixed-bottom mr-2 mb-2">
+                    <button type="button" class="btn btn-primary btn-circle btn-xl"><i data-feather="plus"></i>
+                    </button>
+                </div>
 
             </div>
+            
+
         </div>
 
 

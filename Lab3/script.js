@@ -62,6 +62,79 @@ function TaskList(array=[]){
     }
 }
 
+/*dictionary for creating titles of the of the matching filters in the sidebar */
+const idNameDict = {
+    "filter-all":"All",
+    "filter-today":"Today",
+    "filter-next-seven":"Next 7 Days",
+    "filter-private":"Private",
+    "filter-important":"Important"
+};
+
+/*generates Html code for the filters in the sidebar */
+function makeSideFilter(active=false,text="defaultText",filterName="filter-all"){
+    const button = document.createElement("button")
+    button.setAttribute("type","button")
+    button.setAttribute("id",filterName);
+    button.innerHTML = text;
+
+
+    let buttonClass = "list-group-item list-group-item-action";
+
+    if (active)
+        buttonClass += " active";
+
+    button.className = buttonClass;
+
+
+    return button;
+    
+
+}
+
+/*Function that deletes the children of the html element with id */
+function deleteChildren(id){
+    const htmlElement = document.getElementById(id);
+
+    while(htmlElement.lastChild){
+        htmlElement.removeChild(htmlElement.lastChild);
+    }
+}
+
+/*Loads the initial sidebar, it defaults to showing all the tasks */
+function loadSideBar(currentlyActive="filter-all"){
+    const bod = document.getElementById("filter-links-side")
+    const texts = ["All","Important","Today","Next 7 Days","Private"];
+    const filterNames = ["filter-all","filter-important","filter-today","filter-next-seven","filter-private"];
+
+    const filters = []
+
+    for (let i = 0; i<filterNames.length; i++){
+        let active = currentlyActive == filterNames[i] ? true : false;
+        bod.appendChild(makeSideFilter(active,texts[i],filterNames[i]));
+    }
+
+}
+
+
+/*When called this highlights the button in the sidebar whose id corresponds to 
+the currentlyActive argument, it deletes any previous highlights */
+function refreshSideBar(currentlyActive="filter-all"){
+    const filters = document.getElementById("filter-links-side").children;
+
+    for (let child of filters){
+        let buttonClass = "list-group-item list-group-item-action";
+
+        if (currentlyActive === child.id)
+            buttonClass += " active";
+        
+        child.className=buttonClass;
+    }
+
+}
+
+
+/*Creates the html markup code that will eventually display the tasks */
 function createNewHtmlTask(nTask){
     const bod = document.getElementById("list-of-tasks");
 
@@ -102,7 +175,7 @@ function createNewHtmlTask(nTask){
     const middlea = document.createElement("a");
 
     const middleSpan = document.createElement("a");
-    middleSpan.className = "text-primary";
+    middleSpan.className = "text-dark";
 
     if (nTask.isPrivate)
         middleSpan.setAttribute("data-feather","lock");
@@ -134,7 +207,7 @@ function createNewHtmlTask(nTask){
     return htmlTask
 }
 
-
+/*Loads someList into the main taks list*/
 function loadList(someList){
     
     for(let task of someList){
@@ -142,83 +215,31 @@ function loadList(someList){
     }
 }
 
-function filterAll(fullList) {
-
-    //Get a reference to the link on the page
-    // with an id of "mylink"
-    let a = document.getElementById("filter-all");
-
-    a.onclick = function() {
-
-        deleteAll();
-        loadList(fullList.list);
-
-
-      return false;
-    }
-  }
-
-function filterImportant(fullList){
-    let a = document.getElementById("filter-important");
-    let importantList = fullList.filterAndPrint();
-
-
-    a.onclick = function() {
-
-        deleteAll();
-        loadList(importantList);
-
-
-      return false;
-    }
+function changeTitle(newTitle){
+    const title = document.getElementById("main-page-title");
+    title.innerHTML = newTitle;
 }
 
-function filterNextSeven(fullList){
-    let a = document.getElementById("filter-next-seven");
-    let nextSeven = fullList.genericFilter((a)=>(a.deadline.isBetween(dayjs(),dayjs().add(7,'day'))));
+/*Given a function called callback this filters the tasks list
+furthermore it needs the idName in order to update the sidebar and
+actually highlight the currently selected filter */
+function filterGeneric(fullList,idName,callback){
+    let a = document.getElementById(idName);
+    let genericTask = fullList.genericFilter(callback);
 
     a.onclick = function() {
 
-        deleteAll();
-        loadList(nextSeven);
-
+        changeTitle(idNameDict[idName]);
+        deleteChildren("list-of-tasks");
+        loadList(genericTask);
+        refreshSideBar(idName);
 
       return false;
     }
 
 }
 
-function filterToday(fullList){
-    let a = document.getElementById("filter-today")
-    let today = fullList.genericFilter((a)=>a.deadline.isToday());
-
-
-    a.onclick = function() {
-
-        deleteAll();
-        loadList(today);
-
-
-      return false;
-    }
-}
-
-function filterPrivate(fullList){
-    let a = document.getElementById("filter-private");
-    let privateTask = fullList.genericFilter((a)=>a.isPrivate);
-
-    a.onclick = function() {
-
-        deleteAll();
-        loadList(privateTask);
-
-
-      return false;
-    }
-}
-
-
-
+/*This functions deletes all currently displayed tasks */
 function deleteAll(){
     const htmlTasks = document.getElementById("list-of-tasks");
 
@@ -237,12 +258,14 @@ function main(){
     const fullList = new TaskList([laundry,monday_lab,phone_call,invest,haircut]);
 
     loadList(fullList.list);
+    loadSideBar();
 
-    window.onload = filterAll(fullList);
-    window.onload = filterImportant(fullList);
-    window.onload = filterToday(fullList);
-    window.onload = filterNextSeven(fullList);
-    window.onload = filterPrivate(fullList);
+    window.onload = filterGeneric(fullList,"filter-all",((_)=>true))
+    window.onload = filterGeneric(fullList,"filter-important",((a)=>a.urgent))
+    window.onload = filterGeneric(fullList,"filter-today",((a)=>a.deadline.isToday()))
+    window.onload = filterGeneric(fullList,"filter-next-seven",((a)=>(a.deadline.isBetween(dayjs(),dayjs().add(7,'day')) )))
+    window.onload = filterGeneric(fullList,"filter-private",((a)=>a.isPrivate))
+
 }
 
 main();
