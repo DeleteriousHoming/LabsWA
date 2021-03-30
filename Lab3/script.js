@@ -1,10 +1,9 @@
 "use strict";
 
-
-
 const noDeadline = `9999`;
 
 dayjs.extend(window.dayjs_plugin_isToday)
+dayjs.extend(window.dayjs_plugin_isBetween)
 
 
 function Task(id,description,urgent=false,isPrivate=false,deadline=noDeadline){
@@ -57,8 +56,8 @@ function TaskList(array=[]){
         return filtered;
     }
 
-    this.isTodayFilter = () =>{
-        const filtered = this.list.filter((a)=>(a.deadline.isToday()));
+    this.genericFilter = (filterFunction) => {
+        const filtered = this.list.filter(filterFunction);
         return filtered;
     }
 }
@@ -104,7 +103,9 @@ function createNewHtmlTask(nTask){
 
     const middleSpan = document.createElement("a");
     middleSpan.className = "text-primary";
-    middleSpan.setAttribute("data-feather","user");
+
+    if (nTask.isPrivate)
+        middleSpan.setAttribute("data-feather","lock");
 
     middlea.appendChild(middleSpan)
     middleDiv.appendChild(middlea);
@@ -172,15 +173,44 @@ function filterImportant(fullList){
     }
 }
 
+function filterNextSeven(fullList){
+    let a = document.getElementById("filter-next-seven");
+    let nextSeven = fullList.genericFilter((a)=>(a.deadline.isBetween(dayjs(),dayjs().add(7,'day'))));
+
+    a.onclick = function() {
+
+        deleteAll();
+        loadList(nextSeven);
+
+
+      return false;
+    }
+
+}
+
 function filterToday(fullList){
     let a = document.getElementById("filter-today")
-    let today = fullList.isTodayFilter()
+    let today = fullList.genericFilter((a)=>a.deadline.isToday());
 
 
     a.onclick = function() {
 
         deleteAll();
         loadList(today);
+
+
+      return false;
+    }
+}
+
+function filterPrivate(fullList){
+    let a = document.getElementById("filter-private");
+    let privateTask = fullList.genericFilter((a)=>a.isPrivate);
+
+    a.onclick = function() {
+
+        deleteAll();
+        loadList(privateTask);
 
 
       return false;
@@ -202,14 +232,17 @@ function main(){
     const monday_lab = new Task(2,"Monday lab",false,false,"2021-02-16");
     const phone_call = new Task(3,"Phone call",true,false,"2021-03-08");
     const invest = new Task(4,"Investing",true,true,dayjs());
+    const haircut = new Task(5,"Haircut (next 7)",true,true,dayjs().add(6,'day'));
 
-    const fullList = new TaskList([laundry,monday_lab,phone_call,invest]);
+    const fullList = new TaskList([laundry,monday_lab,phone_call,invest,haircut]);
 
     loadList(fullList.list);
 
     window.onload = filterAll(fullList);
     window.onload = filterImportant(fullList);
     window.onload = filterToday(fullList);
+    window.onload = filterNextSeven(fullList);
+    window.onload = filterPrivate(fullList);
 }
 
 main();

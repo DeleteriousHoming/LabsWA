@@ -14,12 +14,16 @@
         <!--Script, should be placed in the head of the document-->
         <!--uppkg.com is a CDN for loading libraries-->
         <script defer src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
+        <!--Some dayjs plugins-->
         <script defer src="https://unpkg.com/dayjs@1.10.4/plugin/isToday.js"></script>
+        <script defer src="https://unpkg.com/dayjs@1.10.4/plugin/isBetween.js"></script>
+
+
         <script defer src="script.js"></script>
     </head>
 
     <body>
-        <nav class="navbar navbar-dark navbar-expand-lg bg-primary justify-content-between">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark justify-content-between">
             <a class="navbar-brand mr-expand">
                 <span data-feather="check"></span>
                 ToDoManager</a>
@@ -53,22 +57,22 @@
                 <nav class="h-100 navbar d-none d-md-block bg-light col-md-2 align-items-start"  style="height: 100%;">
 
                     <!-- Links -->
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
+                    <ul class="nav flex-column list-group bg-dark">
+                        <li class="nav-item list-group-item">
                             <a id="filter-all" class="nav-link" href="#">All</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item list-group-item">
                             <a id="filter-important" class="nav-link" href="#">Important</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item list-group-item">
                             <a id="filter-today" class="nav-link" href="#">Today</a>
                         </li>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item list-group-item">
                             <a id="filter-next-seven" class="nav-link" href="#">Next 7 days</a>
                         </li>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item list-group-item">
                             <a id="filter-private" class="nav-link" href="#">Private</a>
                         </li>
                     </ul>
